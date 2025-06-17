@@ -29,12 +29,18 @@ def chosen_user(id):
 
 @users_bp.route('/users/<int:id>', methods=['PATCH','PUT'])
 def update(id):
-    user = update_user(id, request.json)
+    user, erro = update_user(id, request.json)
+    print(erro)
+    if erro:
+        erro_info = ERRO.get(erro, {'message': 'Unknown error', 'status_code': 500})
+        return jsonify({'message': erro_info['message']}), erro_info['status_code']
     return jsonify(user.to_dict()), 200
 
 @users_bp.route('/users/<int:id>', methods=['DELETE'])
 def delete(id):
-    result = delete_user(id)
-    if result:
-        return "", 204
+    result, erro = delete_user(id)
+    if erro:
+        erro_info = ERRO.get(erro, {'message': 'Unknown error', 'status_code': 500})
+        return jsonify({'message': erro_info['message']}), erro_info['status_code']
+    return "", 204
 # //

@@ -33,7 +33,7 @@ def chosen_user_list(id):
     return None, "user not found"
 
 def update_user(id, new_info):
-    erro, user_found = chosen_user_list(id)
+    user_found, erro = chosen_user_list(id)
     if erro:
         return None, erro
     for x in users:
@@ -43,14 +43,16 @@ def update_user(id, new_info):
         user_found.name = new_info['name'] if 'name' in new_info else user_found.name
         user_found.email = new_info['email'] if 'email' in new_info else user_found.email
         user_found.senha = new_info['senha'] if 'senha' in new_info else user_found.senha
-        return user_found, "user updated successfully"
+        return user_found, None
     if not new_info['name'] or new_info['email'] or new_info['senha']:
         return None, "bad request"
 
 def delete_user(id):
     global users
-    user = chosen_user_list(id)
+    user, erro = chosen_user_list(id)
     if user:
         users.remove(user)
-        return True
+        return True, None
+    if erro:
+        return False, erro
         
