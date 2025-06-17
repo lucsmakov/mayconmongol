@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 from services.device_service import *
-from utils.error_messages import ERRO
+from utils.error_messages import ERROR as ERRO
 devices_bp = Blueprint('devices', __name__, url_prefix='')
 @devices_bp.route('/devices', methods=['POST'])
 def create():

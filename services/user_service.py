@@ -13,9 +13,9 @@ def create_user(info):
     for x in users:
         if x.email == info['email']:
             return None, "the email already exists"
-    new_user = User(id_generator(), info['email'], info['senha'])
+    new_user = User(id_generator(), info['name'], info['email'], info['senha'])
     users.append(new_user)
-    return new_user
+    return new_user, None
 
 def user_list():
     #resultado = []
