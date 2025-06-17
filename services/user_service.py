@@ -44,6 +44,9 @@ def update_user(id, new_info):
         user_found.email = new_info['email'] if 'email' in new_info else user_found.email
         user_found.senha = new_info['senha'] if 'senha' in new_info else user_found.senha
         return user_found, "user updated successfully"
+    if not new_info['name'] or new_info['email'] or new_info['senha']:
+        return None, "bad request"
+
 def delete_user(id):
     global users
     user = chosen_user_list(id)

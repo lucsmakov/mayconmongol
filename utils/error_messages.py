@@ -3,8 +3,20 @@ ERROR = {
         "message": "The email already exists.",
         "status_code": 409
     },
+    "the device name already exists": {
+        "message": "The device name already exists.",
+        "status_code": 409
+    },
     "user not found": {
-        "message": "user not found.",
+        "message": "User not found.",
         "status_code": 404
+    },
+    "device not found": {
+        "message": "Device not found.",
+        "status_code": 404
+    },
+    "bad request": {
+        "message": "Bad request.",
+        "status_code": 400
     }
 }
